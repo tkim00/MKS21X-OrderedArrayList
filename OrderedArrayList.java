@@ -7,32 +7,23 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
     super(startingCapacity);
   }
   public T set(int index, T element){
-    if(element == null){
-      throw new IllegalArgumentException("element cannot be null");
-    }
+    add(element);
     T x = super.get(index);
     super.remove(index);
-    add(element);
     return x;
   }
   public void add(int index, T element){
-    if(element == null){
-      throw new IllegalArgumentException("element cannot be null");
-    }
+    super.add(element);
     if(findCorrectIndex(element) != size()){
+      super.remove(size()-1);
       super.add(findCorrectIndex(element), element);
-    }else{
-      super.add(element);
     }
   }
   public boolean add(T element){
-    if(element == null){
-      throw new IllegalArgumentException("element cannot be null");
-    }
+    super.add(element);
     if(findCorrectIndex(element) != size()){
+      super.remove(size()-1);
       super.add(findCorrectIndex(element), element);
-    }else{
-      super.add(element);
     }
     return true;
   }
